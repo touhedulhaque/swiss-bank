@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiss Bank</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div id="login-area">
+        <h1 class="text-center">Welcome to Swiss Bank</h1>
+        <div class="submit-area">
+            <h4>Login</h4>
+            <input type="text" class="form-control" placeholder="Email"><br>
+            <input type="password" class="form-control" placeholder="Password"><br>
+            <button id="login" class="btn btn-success">Enter</button><br>
+        </div>
+    </div>
+
+    <div id="transaction-area">
+        <h1 class="text-center margin-setup">Simple Account Balance Program</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="deposit status">
+                    <h5>Deposit</h5>
+                    <h2>CHF <span id="currentDeposit">00</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="withdraw status">
+                    <h5>Withdraw</h5>
+                    <h2>CHF 00</h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="balance status">
+                    <h5>Balance</h5>
+                    <h2>CHF <span id="currentBalance">1240</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="submit-area">
+                    <h4>Deposit</h4>
+                    <input id="depositAmount" type="text" class="form-control"
+                        placeholder="CHF amount you want to deposit"><br>
+                    <button id="addDeposit" class="btn btn-success" >Deposit</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="submit-area">
+                    <h4>Withdraw</h4>
+                    <input id="withdrawAmount" type="text" class="form-control" placeholder="CHF amount you want to withdraw"><br>
+                    <button id="addWithdraw" class="btn btn-success">Withdraw</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+        //login button event handler//
+        const loginBtn = document.getElementById("login");
+        loginBtn.addEventListener("click", function () {
+            const loginArea = document.getElementById("login-area");
+            loginArea.style.display = "none";
+            const transactionArea = document.getElementById('transaction-area');
+
+            transactionArea.style.display = "block";
+
+        })
+
+        //deposit button event handler//
+        const depositBtn = document.getElementById("addDeposit");
+        depositBtn.addEventListener("click", function(){
+            // const depositAmount = document.getElementById("depositAmount").value;
+            // const depositNumber = parseFloat(depositAmount);
+
+            const depositNumber = getInputNumber("depositAmount");
+
+            // const currentDeposit = document.getElementById("currentDeposit").innerText;
+            // const currentDepositNumber = parseFloat(currentDeposit);
+            // const totalDeposit = depositNumber + currentDepositNumber;
+            
+
+            updateSpanText("currentDeposit", depositNumber);
+            
+            // document.getElementById("currentDeposit").innerText = totalDeposit;
+            
+
+            updateSpanText("currentBalance", depositNumber);
+
+            document.getElementById("depositAmount").value = "";
+            
+        })
+
+        //withdraw button event handler
+
+        const withdrawBtn = document.getElementById("addWithdraw");
+        withdrawBtn.addEventListener("click", function(){
+            const withdrawNumber = getInputNumber("withdrawAmount");
+            console.log(withdrawNumber);
+        })
+
+        function getInputNumber(id){
+            const Amount = document.getElementById(id).value;
+            const amountNumber = parseFloat(Amount);
+            return amountNumber;
+        }
+
+
+
+        function updateSpanText(id, depositNumber){
+            const current = document.getElementById(id).innerText;
+            const currentNumber = parseFloat(current);
+            const totalAmount = depositNumber + currentNumber;
+            document.getElementById(id).innerText = totalAmount;
+        }
+    </script>
+
+
+
+
+
+
+   
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
