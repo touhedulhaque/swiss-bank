@@ -1,6 +1,10 @@
 body{
     padding: 100px;
 }
+.logo-resize{
+    width: 200px;
+}
+
 .submit-area{
     
     margin-top: 50px;
